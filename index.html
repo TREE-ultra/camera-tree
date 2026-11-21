@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050b09">
+<title>LUMIÈRE NOËL — The Camera Tree</title>
+<meta name="description" content="一棵挂满相机与镜头的 3D 圣诞树。拖动旋转，点击挂饰，在赛博雪夜里检视每一枚 CMOS。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23050b09'/%3E%3Cpath d='M32 7l5 17 17 5-17 5-5 17-5-17-17-5 17-5z' fill='%23c7ac7a'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-mode="index">
+<canvas id="world" aria-label="可旋转的 3D 相机圣诞树" role="img"></canvas>
+<div class="ambient aurora-a" aria-hidden="true"></div>
+<div class="ambient aurora-b" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="focus-shade" id="focusShade" aria-hidden="true"></div>
+
+<header class="masthead">
+  <div class="wordmark"><span class="mark" aria-hidden="true"></span>LUMIÈRE<span class="noel">NOËL</span></div>
+  <p class="issue">THE CAMERA TREE <span>·</span> VOL. II</p>
+  <p class="issue-cn">一场挂在冷杉上的影像器物展</p>
+</header>
+
+<div class="side-note" aria-hidden="true">
+  <span>PHOTOGRAPHERS' CHRISTMAS</span><i></i><span>MMXXVI</span>
+</div>
+
+<aside class="panel" id="panel" aria-label="藏品与铭牌">
+  <span class="corner tl" aria-hidden="true"></span>
+  <span class="corner tr" aria-hidden="true"></span>
+  <span class="corner bl" aria-hidden="true"></span>
+  <span class="corner br" aria-hidden="true"></span>
+  <button class="panel-close" id="panelClose" type="button" aria-label="返回全树视角">
+    <span aria-hidden="true">×</span>
+  </button>
+  <div class="panel-scroll" id="panelScroll">
+    <div class="panel-inner" id="panelInner"></div>
+  </div>
+</aside>
+
+<div class="focus-hud" id="focusHud" aria-hidden="true">
+  <span class="focus-line"></span>
+  <span id="focusHudLabel">EXPOSED SENSOR</span>
+  <span class="focus-dot"></span>
+  <span>DRAG TO INSPECT · ESC TO RETURN</span>
+</div>
+
+<div class="tooltip" id="tooltip" role="status">
+  <span class="tooltip-brand" id="tooltipBrand"></span>
+  <span class="tooltip-name" id="tooltipName"></span>
+  <span class="tooltip-cta">CLICK TO EXAMINE ↗</span>
+</div>
+
+<footer class="footer">
+  <div class="houses">SONY <b>·</b> NIKON <b>·</b> CANON <b>·</b> HASSELBLAD <b>·</b> FUJIFILM</div>
+  <div class="utilities">
+    <button id="resetBtn" class="icon-btn" type="button" aria-label="重置视角" title="重置视角">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+    </button>
+    <button id="motionBtn" class="icon-btn is-on" type="button" aria-label="暂停自动旋转" title="自动旋转">
+      <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13M16 5.5v13" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5l10 6.5-10 6.5z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <div class="hint" id="hint">
+    <span class="hint-rule"></span>
+    <span>DRAG TO SPIN</span><i></i><span>SCROLL TO DOLLY</span><i></i><span>CLICK AN ORNAMENT</span>
+  </div>
+</footer>
+
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-wordmark"><span class="mark" aria-hidden="true"></span>LUMIÈRE<span class="noel">NOËL</span></div>
+    <p>ASSEMBLING THE CAMERA TREE</p>
+    <div class="loader-bar"><i></i></div>
+    <span class="loader-sub">21 SPECIMENS · 5 HOUSES</span>
+  </div>
+</div>
+
+<div class="webgl-error" id="webglError" hidden>
+  <p class="error-kicker">WEBGL UNAVAILABLE</p>
+  <h2>这棵树需要一盏更亮的灯。</h2>
+  <p>请使用支持 WebGL 的现代浏览器，并确认硬件加速已开启。</p>
+</div>
+
+<script src="three.min.js"></script>
+<script src="specs.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
